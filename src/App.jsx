@@ -12,7 +12,10 @@ function App() {
   const fetchProduct = async () => {
     try {
       setLoading(true)
-      const res = await axios.post('/product', { erp_id: erpId, ean })
+      const res = await axios.post('https://dealavo-backend.onrender.com/product', {
+        erp_id: erpId,
+        ean
+      })
       setProduct(res.data)
     } catch (err) {
       alert('Nie znaleziono produktu')
@@ -22,12 +25,12 @@ function App() {
   }
 
   const addToTracked = async () => {
-    await axios.post('/track', { ean })
+    await axios.post('https://dealavo-backend.onrender.com/track', { ean })
     fetchTracked()
   }
 
   const fetchTracked = async () => {
-    const res = await axios.get('/tracked')
+    const res = await axios.get('https://dealavo-backend.onrender.com/tracked')
     setTracked(res.data)
   }
 
